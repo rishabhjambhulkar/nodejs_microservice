@@ -27,7 +27,7 @@ class CustomerService {
     }
 
     async SignUp(userInputs){
-        
+        console.log(userInputs)
         const { email, password, phone } = userInputs;
         
         // create salt

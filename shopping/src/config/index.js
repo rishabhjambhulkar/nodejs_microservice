@@ -1,11 +1,19 @@
-const dotEnv = require("dotenv");
+const dotenv = require("dotenv");
 
-if (process.env.NODE_ENV !== "prod") {
-  const configFile = `./.env.${process.env.NODE_ENV}`;
-  dotEnv.config({ path: configFile });
+console.log("NODE_ENV:", process.env.NODE_ENV); // Check NODE_ENV value
+
+// Check if NODE_ENV is set and it's not production
+if (process.env.NODE_ENV && process.env.NODE_ENV !== "prod") {
+  // const envPath = `../config.env.${process.env.NODE_ENV}`; // Construct path based on NODE_ENV
+  // console.log("Loading environment file:", envPath);
+  dotenv.config({ path: "./config.env" });// Load environment file
 } else {
-  dotEnv.config();
+  console.log("Loading default .env file");
+  dotenv.config(); // Load default .env file
 }
+
+// Debug the loaded environment variables
+console.log("Loaded PORT:", process.env.PORT);
 
 module.exports = {
   PORT: process.env.PORT,
